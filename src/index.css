@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg {
+    background-image: url(../src/assets/bg.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.blur {
+    background: rgba(131, 131, 131, 0.26);
+    backdrop-filter: blur(20px);
+}
+
+@media screen and (min-width: 1080px) {
+    .bg {
+        background-image: url(../src/assets/bglarge.svg);
+    }
+}
