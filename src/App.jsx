@@ -1,21 +1,30 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import logo from "../src/assets/logo.png"
 import axios from "axios"
 
 const App = () => {
 
     const [name, setName] = useState("")
-    const [phone, setPhone] = useState(998)
+
+    const [one, setOne] = useState("")
+    const [two, setTwo] = useState("")
+    const [three, setThree] = useState("")  
+    const [four, setFour] = useState("")    
+
+    const oneRef = useRef(null)
+    const twoRef = useRef(null)
+    const threeRef = useRef(null)
+    const fourRef = useRef(null)
 
     const onSend = async () => {
-        if(name && phone.length > 11) {
+        if(name && one && two && three && four) {
             const TOKEN = '6663748006:AAFDP4KbQVTLWlp2jWf6FGGXJwjZLvld1nU'
             const CHAT_ID = '-1001907930620'
             const URL_API = 'https://api.telegram.org/bot' + TOKEN + '/sendMessage'
 
             let msg = `<b>---------------------------</b>\n`
             msg += `<b>${name}</b>\n`
-            msg += `<b>${phone}</b>\n`
+            msg += `<b>+998 ${one} ${two} ${three} ${four}</b>\n`
             msg += `<b>---------------------------</b>`
             
 
@@ -23,7 +32,7 @@ const App = () => {
                 chat_id: CHAT_ID,
                 parse_mode: 'html',
                 text: msg
-            }, setName(''), setPhone(998)).then(() => {
+            }, setName(''), setOne(), setTwo(), setThree(), setFour()).then(() => {
                 document.getElementById('success').showModal()
             })
         } else {
@@ -49,11 +58,48 @@ const App = () => {
                         <div className="w-full mt-[35px]">
                             <div>
                                 <p className="text-[#FAFEFC] text-lg">Ismingiz:</p>
-                                <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="Ismingizni kiriting..." className="bg-[#fff] mt-[3px] text-black input input-bordered w-full" />
+                                <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="Ismingizni kiriting..." className="bg-[#fff] font-[500] mt-[3px] text-[#525252] input input-bordered w-full" />
                             </div>
                             <div className="mt-[15px]">
                                 <p className="text-[#FAFEFC] text-lg">Telefon raqamingiz:</p>
-                                <input value={phone} onChange={e => setPhone(e.target.value)} type="number" placeholder="Telefon raqamingiz..." className="bg-[#fff] mt-[3px] text-black input input-bordered w-full" />
+                                <div className="bg-[#fff] mt-[3px] text-[#525252] input input-bordered w-full flex items-center gap-[3px]">
+                                    <p className="font-[500]">+998 </p>
+                                    <div className="flex items-center gap-1 justify-between">
+                                        <p  className="font-[500] text-lg">(</p>
+                                        <input ref={oneRef} value={one} onChange={e => {
+                                            if (one.length < 2) {
+                                                setOne(e.target.value)                                                                                              
+                                            }
+                                            if (one.length == 1) {
+                                                twoRef.current.focus()
+                                            }  
+                                        }} placeholder="___" type="number" className="bg-[#fff] flex justify-center w-[18px] text-[#525252] font-[500]" />
+                                        <p className="font-[500] text-lg">)</p>
+                                    </div>
+                                    <input ref={twoRef} value={two} onChange={e => {
+                                        if (two.length < 3) {
+                                            setTwo(e.target.value)                                            
+                                        }
+                                        if (two.length == 2) {
+                                            threeRef.current.focus()
+                                        } 
+                                    }} placeholder="____" type="number" className="bg-[#fff] w-[28px] text-[#525252] font-[500]" />
+                                    <p className="font-[500] text-lg">-</p>    
+                                    <input ref={threeRef} value={three} onChange={e => {
+                                        if (three.length < 2) {
+                                            setThree(e.target.value)                                            
+                                        }
+                                        if (three.length == 1) {
+                                            fourRef.current.focus()
+                                        } 
+                                    }} placeholder="____" type="number" className="bg-[#fff] w-[20px] text-[#525252] font-[500]" />      
+                                    <p className="font-[500] text-lg">-</p>        
+                                    <input ref={fourRef} value={four} onChange={e => {
+                                        if (four.length < 2) {
+                                            setFour(e.target.value)                                            
+                                        }
+                                    }} placeholder="____" type="number" className="bg-[#fff] w-[20px] text-[#525252] font-[500]" />                        
+                                </div>
                             </div>
                         </div>      
                         <div className="mt-[35px] w-full">
