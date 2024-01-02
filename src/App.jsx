@@ -108,6 +108,12 @@ const App = () => {
                         <p className="text-[#FAFEFC] text-lg mt-[40px] mb-[25px] lg:mb-[40px]">Toshkent, O'zbekiston</p>      
                     </div>          
                 </div>
+
+                <div className="flex justify-center w-full flex-col mt-10">
+                    <p className="text-[#FAFEFC] text-lg text-center ">Bu sayt ZET GROUP tomonidan yasalgan</p>
+                    <a href="tel:+998777772787" className="text-[#FAFEFC] text-center hover:underline">+998 77 777 27 87</a>
+                </div>
+
             </div>
 
             <dialog id="success" className="modal">
