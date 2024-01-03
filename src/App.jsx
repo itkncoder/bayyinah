@@ -24,7 +24,7 @@ const App = () => {
 
             let msg = `<b>---------------------------</b>\n`
             msg += `<b>${name}</b>\n`
-            msg += `<b>+998 ${one} ${two} ${three} ${four}</b>\n`
+            msg += `<b>+998${one}${two}${three}${four}</b>\n`
             msg += `<b>---------------------------</b>`
             
 
